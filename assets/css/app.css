@@ -1,0 +1,20 @@
+html,
+body {
+  margin: 0;
+  font-size: 20px;
+  box-sizing: border-box;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  height: 100%;
+  min-height: 100%;
+}
+
+*,
+*:before,
+*:after {
+  font-family: inherit;
+  box-sizing: inherit;
+}
+
+body {
+  padding: 2rem;
+}

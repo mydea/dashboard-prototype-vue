@@ -1,5 +1,5 @@
 import { Cell } from "~~/global";
-import cellHasNoOverlap from "../cell-has-no-overlap";
+import cellHasNoOverlap from "../cellHasNoOverlap";
 
 export default function canMoveDown(cell: Cell, cells: Cell[]): boolean {
   let virtualCell: Cell = Object.assign({}, cell, {

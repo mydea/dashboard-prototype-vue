@@ -4,9 +4,12 @@
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
-    "preview": "nuxt preview"
+    "preview": "nuxt preview",
+    "test": "vitest"
   },
   "devDependencies": {
-    "nuxt": "3.0.0-rc.4"
+    "@nuxt/test-utils-edge": "^3.0.0-rc.4-27588249.d7d97cd",
+    "nuxt": "3.0.0-rc.4",
+    "vitest": "^0.15.1"
   }
 }

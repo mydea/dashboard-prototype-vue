@@ -1,5 +1,5 @@
 import { Cell } from "~~/global";
-import cellHasNoOverlap from "../cell-has-no-overlap";
+import cellHasNoOverlap from "../cellHasNoOverlap";
 
 export default function canMoveLeft(cell: Cell, cells: Cell[]): boolean {
   if (cell.x === 0) {

@@ -1,5 +1,5 @@
 import { Cell } from "~~/global";
-import cellHasNoOverlap from "../cell-has-no-overlap";
+import cellHasNoOverlap from "../cellHasNoOverlap";
 
 export default function canIncreaseHeight(cell: Cell, cells: Cell[]): boolean {
   if (cell.height >= 3) {

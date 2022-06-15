@@ -1,4 +1,5 @@
 import { Cell } from "~~/global";
+import cellsOverlap from "./cells-overlap";
 
 export default function cellHasNoOverlap(cell: Cell, cells: Cell[]): boolean {
   return !cells.some((compareCell) => {

@@ -1,42 +1,19 @@
-# Nuxt 3 Minimal Starter
+# Dashboard prototype
 
-Look at the [nuxt 3 documentation](https://v3.nuxtjs.org) to learn more.
+This is a prototype for an interactive, drag-and-droppable dashboard.
+It allows to add different-sized items to a dashboard, and reorder them.
 
 ## Setup
 
-Make sure to install the dependencies:
-
 ```bash
-# yarn
 yarn install
-
-# npm
-npm install
-
-# pnpm
-pnpm install --shamefully-hoist
+yarn dev
 ```
 
-## Development Server
+## Tests
 
-Start the development server on http://localhost:3000
+To run the (basic) tests:
 
 ```bash
-npm run dev
+yarn test
 ```
-
-## Production
-
-Build the application for production:
-
-```bash
-npm run build
-```
-
-Locally preview production build:
-
-```bash
-npm run preview
-```
-
-Checkout the [deployment documentation](https://v3.nuxtjs.org/guide/deploy/presets) for more information.

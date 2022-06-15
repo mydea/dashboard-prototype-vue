@@ -15,6 +15,12 @@ body {
   box-sizing: inherit;
 }
 
+html {
+  --grid-columns: 8;
+  --grid-row-height: 7rem;
+  --grid-gap: 1rem;
+}
+
 body {
   padding: 2rem;
 }

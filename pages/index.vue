@@ -1,3 +1,5 @@
 <template>
-  <Dashboard />
+  <div>
+    <Dashboard />
+  </div>
 </template>

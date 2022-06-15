@@ -1,4 +1,6 @@
 <template>
+  <DashboardAdd />
+
   <div class="dashboard-grid">
     <DashboardCard
       v-for="cell in cells"
@@ -26,6 +28,7 @@
       :x="cell.x"
       :y="cell.y"
       @add-cell="addCell"
+      @drop-cell="dropCell"
     />
   </div>
 </template>
@@ -34,12 +37,16 @@
 let _colCount = 8;
 
 let _cells = [
-  { index: 0, x: 0, y: 0, height: 1, width: 4 },
+  { index: 0, x: 0, y: 0, height: 2, width: 4 },
   { index: 1, x: 4, y: 0, height: 1, width: 2 },
-  { index: 2, x: 7, y: 0, height: 2, width: 1 },
-  { index: 3, x: 1, y: 1, height: 2, width: 2 },
-  { index: 4, x: 3, y: 1, height: 1, width: 4 },
-  { index: 5, x: 3, y: 2, height: 1, width: 4 },
+  { index: 2, x: 4, y: 1, height: 1, width: 2 },
+  { index: 3, x: 6, y: 0, height: 4, width: 2 },
+  { index: 4, x: 0, y: 2, height: 2, width: 2 },
+  { index: 5, x: 2, y: 2, height: 2, width: 2 },
+  { index: 6, x: 4, y: 2, height: 2, width: 2 },
+  { index: 7, x: 0, y: 4, height: 1, width: 2 },
+  { index: 8, x: 2, y: 4, height: 1, width: 2 },
+  { index: 9, x: 6, y: 4, height: 2, width: 2 },
 ];
 
 let lastIndex = _cells.length;
@@ -107,9 +114,12 @@ function moveDown(index) {
   cell.y = cell.y + 1;
 }
 
-function addCell(x, y) {
-  let cell = { x, y, width: 1, height: 1, index: lastIndex++ };
-  cells.push(cell);
+function addCell({ x, y, width, height }) {
+  let cell = { x, y, width, height, index: lastIndex++ };
+
+  if (cellHasNoOverlap(cell, cells)) {
+    cells.push(cell);
+  }
 }
 
 function deleteCell(index) {
@@ -119,13 +129,44 @@ function deleteCell(index) {
     cells.splice(pos, 1);
   }
 }
+
+function dropCell(index, { x, y, offsetX, offsetY }) {
+  let cell = getCellForIndex(index);
+
+  let cellX = x - offsetX;
+  let cellY = y - offsetY;
+
+  let virtualCell = Object.assign({}, cell, {
+    x: cellX,
+    y: cellY,
+  });
+
+  if (virtualCell.x + virtualCell.width > _colCount) {
+    return;
+  }
+
+  if (virtualCell.y < 0 || virtualCell.x < 0) {
+    return;
+  }
+
+  if (!cellHasNoOverlap(virtualCell, cells)) {
+    return;
+  }
+
+  cell.x = cellX;
+  cell.y = cellY;
+}
 </script>
 
 <style scoped>
 .dashboard-grid {
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  gap: 1rem;
-  grid-auto-rows: minmax(10rem, auto);
+  grid-template-columns: repeat(var(--grid-columns), 1fr);
+  gap: var(--grid-gap);
+  grid-auto-rows: minmax(var(--grid-row-height), auto);
+}
+
+.dashboard-grid > * {
+  min-width: 0;
 }
 </style>
